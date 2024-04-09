@@ -5,7 +5,8 @@ import { auth } from "./firebase";
 import { ProtectedRoute } from "./components/protectedRoute";
 import { Home } from "./pages/home";
 import { Private } from "./pages/private";
-
+// // import {Modal} from 'src/modal'
+// import Modal from "./modal/modal";
 import "./App.css";
 import { useEffect, useState } from "react";
 
@@ -34,6 +35,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index path="/" element={<Home user={user}></Home>}></Route>
+            {/*<Route index path='/modal' element={<Modal></Modal>}></Route>*/}
           <Route
               path="/private"
               element={

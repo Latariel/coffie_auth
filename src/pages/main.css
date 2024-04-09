@@ -33,7 +33,7 @@
 
 
 
-////таблицы///
+/*////таблицы///*/
 
 
 .modal {
@@ -148,19 +148,14 @@ table{
     text-align: right;
     background-color: white;
 }
-/*.deserts{*/
-/*    margin-right: 30px;*/
-/*    margin-top: 12px;*/
-/*    height: 220px;*/
-/*    width: 489px;*/
-/*    background-color: white;*/
-/*    float: right;*/
-/*}*/
+
 
 .total_1 {
-    /*margin-left: 412px;*/
-    /*margin-top: 75px;*/
-    float: right;
+    float: left;
+    margin-top: 40px;
+    margin-left: 676px;
+    font-weight: bold;
+    font-size: x-large;
 }
 
 
@@ -178,43 +173,15 @@ table{
     font-size: initial;
 }
 
-/*.drinks span{*/
-/*    background-color: rgba(252, 252, 252, 0.82)*/
-/*}*/
-
 
 .final {
     font-weight: bold;
-    font-size: xx-large;
+    font-size: x-large;
     margin-top: 80px;
     background-color: white;
 }
 
 
-
-/*.ket {*/
-/*    height: 20px;*/
-/*}*/
-
-/*.ch {*/
-/*    border-top: 4px white;*/
-/*    height: 20px ;*/
-/*}*/
-/*.bl{*/
-/*    height: 20px ;*/
-/*}*/
-
-/*.bbq{*/
-/*    height: 20px ;*/
-/*}*/
-.souse_two tr{
-    border-bottom: 7px solid rgb(255, 255, 255);
-}
-
-.souse_two td{
-    background-color: rgba(252, 252, 252, 0.82);
-    padding-left: 5px;
-}
 
 .border {
     border-radius: 10px;

@@ -2,6 +2,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import React, { useState } from 'react';
 import './main.css'
+// import {Modal} from 'src/modal'
+import Modal from "../modal/modal";
 import logo from './лого1.png'
 
 export const Private = () => {
@@ -13,7 +15,7 @@ export const Private = () => {
 
     const [total, setTotal] = useState(0);
     const [totals, setTotals] = useState({
-        ketchup: 0,
+
         espresso: 0,
         americano: 0,
         capuchino: 0,
@@ -29,9 +31,30 @@ export const Private = () => {
         vaf: 0,
         med: 0,
         cookie: 0,
-        blue_cheese: 0,
-        bbq: 0,
     });
+    const [selectedItems, setSelectedItems] = useState([]);
+
+
+
+    const menuItems = {
+        americano:  'Американо',
+        capuchino:  'Капучино',
+        espresso: 'Эспрессо',
+        flet: 'Флэт Уайт',
+        hotChocolate: 'Горячий шоколад',
+        cacao: 'Какао',
+        milkShake: 'Молочный Коктейль',
+        tea1:'Черный чай',
+        tea2: 'Зеленый чай',
+        nap: 'Наполеон',
+        black: 'Черный Лес',
+        kartoshka: 'Пироженое "Картошка"',
+        vaf: 'Вафельные трубочки',
+        med: 'Медовик',
+        cookie: 'Печенье',
+        // Добавьте другие напитки здесь
+    };
+
 
     const addItem = (item, price) => {
         if (totals[item] < 10) {
@@ -40,6 +63,10 @@ export const Private = () => {
             setTotals(updatedTotals);
 
             setTotal(total + price);
+
+            if (!selectedItems.includes(item)) {
+                setSelectedItems([...selectedItems, item]); // Добавить выбранную позицию
+            }
         } else {
             alert('Достигнуто максимальное количество позиций (10).');
         }
@@ -52,8 +79,43 @@ export const Private = () => {
             setTotals(updatedTotals);
 
             setTotal(total - price);
+            setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item)); // Удалить выбранную позицию
         }
     };
+
+
+    // const menuItems = {
+    //     americano: { name: 'Американо', price: 120 },
+    //     cappuccino: { name: 'Капучино', price: 150 },
+    //     // Добавьте другие напитки здесь
+    // };
+    //
+    // const addItem = (item) => {
+    //     if (totals[item] < 10) {
+    //         const updatedTotals = { ...totals };
+    //         updatedTotals[item]++;
+    //         setTotals(updatedTotals);
+    //
+    //         setTotal(total + menuItems[item].price);
+    //
+    //         if (!selectedItems.includes(item)) {
+    //             setSelectedItems([...selectedItems, item]); // Добавить выбранную позицию
+    //         }
+    //     } else {
+    //         alert('Достигнуто максимальное количество позиций (10).');
+    //     }
+    // };
+    //
+    // const removeItem = (item) => {
+    //     if (totals[item] > 0) {
+    //         const updatedTotals = { ...totals };
+    //         updatedTotals[item]--;
+    //         setTotals(updatedTotals);
+    //
+    //         setTotal(total - menuItems[item].price);
+    //         setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item)); // Удалить выбранную позицию
+    //     }
+    // };
 
 
     return (
@@ -68,6 +130,44 @@ export const Private = () => {
                 <div className='left-part'>
                     <table className="drinks">
                         <caption>Напитки</caption>
+
+                        {/*{Object.keys(menuItems).map((item) => (*/}
+                        {/*    // <tr className="ket" key={item}>*/}
+                        {/*    //     <td className="border">Эспрессо 120 ₽</td>*/}
+                        {/*    //     <td className="">*/}
+                        {/*    //         <button onClick={() => removeItem('espresso', 120)}>—</button>*/}
+                        {/*    //     </td>*/}
+                        {/*    //     <td><span id="bbq">{totals.espresso}</span></td>*/}
+                        {/*    //     <td className="border">*/}
+                        {/*    //         <button onClick={() => addItem('espresso', 120)}>+</button>*/}
+                        {/*    //     </td>*/}
+                        {/*    // </tr>*/}
+
+
+
+                        {/*    <tr key={item} className={item}>*/}
+                        {/*        <td className="border">{menuItems[item]}</td>*/}
+                        {/*        <td className="">*/}
+                        {/*            <button onClick={() => removeItem(item, 120)}>—</button>*/}
+                        {/*        </td>*/}
+                        {/*        <td><span id={item}>{totals[item]}</span></td>*/}
+                        {/*        <td className="border">*/}
+                        {/*            <button onClick={() => addItem(item, 120)}>+</button>*/}
+                        {/*        </td>*/}
+                        {/*    </tr>*/}
+                        {/*    //*/}
+                        {/*    // <tr key={item} className={item}>*/}
+                        {/*    //     <td className="border">{menuItems[item].name} {menuItems[item].price} ₽</td>*/}
+                        {/*    //     <td className="">*/}
+                        {/*    //         <button onClick={() => removeItem(item)}>—</button>*/}
+                        {/*    //     </td>*/}
+                        {/*    //     <td><span id={item}>{totals[item]}</span></td>*/}
+                        {/*    //     <td className="border">*/}
+                        {/*    //         <button onClick={() => addItem(item)}>+</button>*/}
+                        {/*    //     </td>*/}
+                        {/*    // </tr>*/}
+                        {/*))}*/}
+
                         <tr className="ket">
                             <td className="border">Эспрессо 120 ₽</td>
                             <td className="">
@@ -254,12 +354,24 @@ export const Private = () => {
             {/*    <p className="total_1"> Итого: <span className="final" id="total" > {total}</span> </p>*/}
             {/*</div>*/}
 <div className='btnMain'>
-    <button className='btn4'>Наличные</button>
+    <button className='btn4' onClick={Modal}>Наличные</button>
     <button className='btn5'>Безналичные</button>
 </div>
             <div className='bottom'>
+
                 <p className="total_1"> Итого: <span className="final" id="total" > {total}</span> </p>
+
+                <h2>Выбранные позиции:</h2>
+                <ul>
+                    {selectedItems.map((selectedItem, index) => (
+                        <li key={index}>{menuItems[selectedItem]} {totals[selectedItem]}</li>
+                    ))}
+                </ul>
+                {/*<Modal>*/}
+
+                {/*</Modal>*/}
             </div>
+
             {/*<button className='btn4'>наличные</button>*/}
             {/*<button className='btn5'>базналичные</button>*/}
         </section>
