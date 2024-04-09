@@ -2,20 +2,21 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import React, { useState } from 'react';
 import './main.css'
-// import {Modal} from 'src/modal'
-import Modal from "../modal/modal";
 import logo from './лого1.png'
 
+import {Modal} from "../Modal/Modal";
+
 export const Private = () => {
+
+
     const handleSignOut = () => {
         signOut(auth)
             .then(() => console.log("Sign Out"))
             .catch((error) => console.log(error));
     };
-
+    const [modalInfoIsOpen, setModalInfoOpen] = useState(false);
     const [total, setTotal] = useState(0);
     const [totals, setTotals] = useState({
-
         espresso: 0,
         americano: 0,
         capuchino: 0,
@@ -52,7 +53,6 @@ export const Private = () => {
         vaf: 'Вафельные трубочки',
         med: 'Медовик',
         cookie: 'Печенье',
-        // Добавьте другие напитки здесь
     };
 
 
@@ -65,7 +65,7 @@ export const Private = () => {
             setTotal(total + price);
 
             if (!selectedItems.includes(item)) {
-                setSelectedItems([...selectedItems, item]); // Добавить выбранную позицию
+                setSelectedItems([...selectedItems, item]);
             }
         } else {
             alert('Достигнуто максимальное количество позиций (10).');
@@ -84,38 +84,19 @@ export const Private = () => {
     };
 
 
-    // const menuItems = {
-    //     americano: { name: 'Американо', price: 120 },
-    //     cappuccino: { name: 'Капучино', price: 150 },
-    //     // Добавьте другие напитки здесь
-    // };
-    //
-    // const addItem = (item) => {
-    //     if (totals[item] < 10) {
-    //         const updatedTotals = { ...totals };
-    //         updatedTotals[item]++;
-    //         setTotals(updatedTotals);
-    //
-    //         setTotal(total + menuItems[item].price);
-    //
-    //         if (!selectedItems.includes(item)) {
-    //             setSelectedItems([...selectedItems, item]); // Добавить выбранную позицию
-    //         }
-    //     } else {
-    //         alert('Достигнуто максимальное количество позиций (10).');
-    //     }
-    // };
-    //
-    // const removeItem = (item) => {
-    //     if (totals[item] > 0) {
-    //         const updatedTotals = { ...totals };
-    //         updatedTotals[item]--;
-    //         setTotals(updatedTotals);
-    //
-    //         setTotal(total - menuItems[item].price);
-    //         setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item)); // Удалить выбранную позицию
-    //     }
-    // };
+
+    function handlePrint() {
+        // Скрыть все элементы, кроме модального окна
+        const originalDisplay = document.body.style.display;
+        document.body.style.display = 'none';
+
+        // Печать содержимого модального окна
+        window.print();
+
+        // Восстановить отображение элементов
+        document.body.style.display = originalDisplay;
+    }
+
 
 
     return (
@@ -124,49 +105,10 @@ export const Private = () => {
                 <img src={logo} className='img1' alt='logo'/>
                 <button onClick={handleSignOut} className='btn3'>Sign Out</button>
             </div>
-            {/*<img src={logo} className='img1'/>*/}
-            {/*<button onClick={handleSignOut}>Sign Out</button>*/}
             <div className='top2'>
                 <div className='left-part'>
                     <table className="drinks">
                         <caption>Напитки</caption>
-
-                        {/*{Object.keys(menuItems).map((item) => (*/}
-                        {/*    // <tr className="ket" key={item}>*/}
-                        {/*    //     <td className="border">Эспрессо 120 ₽</td>*/}
-                        {/*    //     <td className="">*/}
-                        {/*    //         <button onClick={() => removeItem('espresso', 120)}>—</button>*/}
-                        {/*    //     </td>*/}
-                        {/*    //     <td><span id="bbq">{totals.espresso}</span></td>*/}
-                        {/*    //     <td className="border">*/}
-                        {/*    //         <button onClick={() => addItem('espresso', 120)}>+</button>*/}
-                        {/*    //     </td>*/}
-                        {/*    // </tr>*/}
-
-
-
-                        {/*    <tr key={item} className={item}>*/}
-                        {/*        <td className="border">{menuItems[item]}</td>*/}
-                        {/*        <td className="">*/}
-                        {/*            <button onClick={() => removeItem(item, 120)}>—</button>*/}
-                        {/*        </td>*/}
-                        {/*        <td><span id={item}>{totals[item]}</span></td>*/}
-                        {/*        <td className="border">*/}
-                        {/*            <button onClick={() => addItem(item, 120)}>+</button>*/}
-                        {/*        </td>*/}
-                        {/*    </tr>*/}
-                        {/*    //*/}
-                        {/*    // <tr key={item} className={item}>*/}
-                        {/*    //     <td className="border">{menuItems[item].name} {menuItems[item].price} ₽</td>*/}
-                        {/*    //     <td className="">*/}
-                        {/*    //         <button onClick={() => removeItem(item)}>—</button>*/}
-                        {/*    //     </td>*/}
-                        {/*    //     <td><span id={item}>{totals[item]}</span></td>*/}
-                        {/*    //     <td className="border">*/}
-                        {/*    //         <button onClick={() => addItem(item)}>+</button>*/}
-                        {/*    //     </td>*/}
-                        {/*    // </tr>*/}
-                        {/*))}*/}
 
                         <tr className="ket">
                             <td className="border">Эспрессо 120 ₽</td>
@@ -208,17 +150,6 @@ export const Private = () => {
                                 <button onClick={() => addItem('flet', 180)}>+</button>
                             </td>
                         </tr>
-                        {/*<tr className="bbq">*/}
-                        {/*    <td className="border">Горячий шоколад 180 ₽</td>*/}
-                        {/*    <td className="">*/}
-                        {/*        <button onClick={() => removeItem('ketchup', 20)}>—</button>*/}
-                        {/*    </td>*/}
-                        {/*    <td><span id="bbq">0</span></td>*/}
-                        {/*    <td className="border">*/}
-                        {/*        <button onClick={() => addItem('ketchup', 20)}>+</button>*/}
-                        {/*    </td>*/}
-                        {/*</tr>*/}
-
 
                         <tr className="bbq">
                             <td className="border">Горячий шоколад 180 ₽</td>
@@ -349,31 +280,38 @@ export const Private = () => {
 
             </div>
 
-
-            {/*<div className='bottom'>*/}
-            {/*    <p className="total_1"> Итого: <span className="final" id="total" > {total}</span> </p>*/}
-            {/*</div>*/}
 <div className='btnMain'>
-    <button className='btn4' onClick={Modal}>Наличные</button>
-    <button className='btn5'>Безналичные</button>
+    <button className='btn4'
+            onClick={() => setModalInfoOpen(true)}
+    >
+        Наличные</button>
+    {/*<button className='btn5'>Безналичные</button>*/}
+    <button
+        className="btn5"
+        onClick={() => setModalInfoOpen(true)}
+    >
+        Безналичные
+    </button>
+    <Modal
+        isOpen={modalInfoIsOpen}
+        onClose={() => setModalInfoOpen(false)}
+    >
+
+        <h2>Чек:</h2>
+        <ul>
+            {selectedItems.map((selectedItem, index) => (
+                <li key={index}>{menuItems[selectedItem]} {totals[selectedItem]}</li>
+            ))}
+            <p > Итого: <span className="final" id="total" > {total}</span> рублей</p>
+            <button onClick={handlePrint}>Печать чека</button>
+        </ul>
+    </Modal>
 </div>
             <div className='bottom'>
 
                 <p className="total_1"> Итого: <span className="final" id="total" > {total}</span> </p>
 
-                <h2>Выбранные позиции:</h2>
-                <ul>
-                    {selectedItems.map((selectedItem, index) => (
-                        <li key={index}>{menuItems[selectedItem]} {totals[selectedItem]}</li>
-                    ))}
-                </ul>
-                {/*<Modal>*/}
-
-                {/*</Modal>*/}
             </div>
-
-            {/*<button className='btn4'>наличные</button>*/}
-            {/*<button className='btn5'>базналичные</button>*/}
         </section>
     );
 };
