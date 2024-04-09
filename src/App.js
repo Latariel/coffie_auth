@@ -7,6 +7,7 @@ import { Home } from "./pages/home";
 import { Private } from "./pages/private";
 import "./App.css";
 import { useEffect, useState } from "react";
+import {Modal} from "./Modal/Modal";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,7 +38,9 @@ function App() {
               path="/private"
               element={
                 <ProtectedRoute user={user}>
-                  <Private></Private>
+                  <Private>
+                      <Modal></Modal>
+                  </Private>
                 </ProtectedRoute>
               }
           ></Route>

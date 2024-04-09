@@ -5,6 +5,9 @@ import './main.css'
 import logo from './лого1.png'
 
 import {Modal} from "../Modal/Modal";
+import { saveAs } from 'file-saver';
+import { Document, Packer, Paragraph, TextRun } from 'docx';
+
 
 export const Private = () => {
 
@@ -36,16 +39,15 @@ export const Private = () => {
     const [selectedItems, setSelectedItems] = useState([]);
 
 
-
     const menuItems = {
-        americano:  'Американо',
-        capuchino:  'Капучино',
+        americano: 'Американо',
+        capuchino: 'Капучино',
         espresso: 'Эспрессо',
         flet: 'Флэт Уайт',
         hotChocolate: 'Горячий шоколад',
         cacao: 'Какао',
         milkShake: 'Молочный Коктейль',
-        tea1:'Черный чай',
+        tea1: 'Черный чай',
         tea2: 'Зеленый чай',
         nap: 'Наполеон',
         black: 'Черный Лес',
@@ -58,7 +60,7 @@ export const Private = () => {
 
     const addItem = (item, price) => {
         if (totals[item] < 10) {
-            const updatedTotals = { ...totals };
+            const updatedTotals = {...totals};
             updatedTotals[item]++;
             setTotals(updatedTotals);
 
@@ -74,7 +76,7 @@ export const Private = () => {
 
     const removeItem = (item, price) => {
         if (totals[item] > 0) {
-            const updatedTotals = { ...totals };
+            const updatedTotals = {...totals};
             updatedTotals[item]--;
             setTotals(updatedTotals);
 
@@ -83,20 +85,99 @@ export const Private = () => {
         }
     };
 
+    // const [printing, setPrinting] = useState(false);
+    //
+    // // Функция для обработки печати
+    // function handlePrint() {
+    //     // Скрыть все элементы, кроме модального окна
+    //     const originalDisplay = document.body.style.display;
+    //     document.body.style.display = 'none';
+    //
+    //     // Печать содержимого модального окна
+    //     window.print();
+    //
+    //     // Восстановить отображение элементов
+    //     document.body.style.display = originalDisplay;
+    //
+    //     // Установить состояние печати в true
+    //     setPrinting(true);
+    // }
 
 
-    function handlePrint() {
-        // Скрыть все элементы, кроме модального окна
-        const originalDisplay = document.body.style.display;
-        document.body.style.display = 'none';
+    // function handlePrint() {
+    //     // Скрыть все элементы, кроме модального окна
+    //     const originalDisplay = document.body.style.display;
+    //     document.body.style.display = 'none';
+    //
+    //     // Печать содержимого модального окна
+    //     window.print();
+    //
+    //     // Восстановить отображение элементов
+    //     document.body.style.display = originalDisplay;
+    // }
 
-        // Печать содержимого модального окна
-        window.print();
+   // function handleExportToWord async () {
+   //  const doc = new Document({
+   //      sections: [{
+   //          properties: {},
+   //          children: [
+   //              new Paragraph({
+   //                  children: [
+   //                      new TextRun("Чек:"),
+   //                  ],
+   //              }),
+   //              // Добавьте остальные элементы чека (ваш код)
+   //          ],
+   //      }],
+   //  });
 
-        // Восстановить отображение элементов
-        document.body.style.display = originalDisplay;
-    }
 
+    //     const buffer = await Packer.toBuffer(doc);
+    //     const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+    //     const link = document.createElement('a');
+    //     link.href = window.URL.createObjectURL(blob);
+    //     link.download = 'my-check.docx';
+    //     link.click();
+    // };
+
+
+    // const [modalInfoIsOpen, setModalInfoOpen] = useState(false);
+    // const generateAndDownloadReceipt = () => {
+    //     // Создание контента для файла Word
+    //     const content = `
+    //         <h2>Чек:</h2>
+    //         <ul>
+    //             ${selectedItems.map((selectedItem, index) => (
+    //         `<li>${menuItems[selectedItem]} ${totals[selectedItem]}</li>`
+    //     )).join('')}
+    //             <p>Итого: <span class="final" id="total">${total}</span> рублей</p>
+    //         </ul>
+    //     `;
+    //
+    //     // Создание Blob
+    //     const blob = new Blob([content], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+    //
+    //     // Сохранение файла
+    //     saveAs(blob, 'receipt.docx');
+    // }
+
+
+    const generateAndDownloadReceipt = () => {
+        // Генерация текста для сохранения
+        const receiptText = `
+            Чек:
+            ${selectedItems.map((selectedItem, index) => (
+            `${menuItems[selectedItem]} ${totals[selectedItem]}`
+        )).join('\n')}
+            Итого: ${total} рублей
+        `;
+
+        // Создание Blob
+        const blob = new Blob([receiptText], { type: 'text/plain' });
+
+        // Сохранение файла
+        saveAs(blob, 'receipt.txt');
+    };
 
 
     return (
@@ -296,14 +377,13 @@ export const Private = () => {
         isOpen={modalInfoIsOpen}
         onClose={() => setModalInfoOpen(false)}
     >
-
         <h2>Чек:</h2>
         <ul>
             {selectedItems.map((selectedItem, index) => (
                 <li key={index}>{menuItems[selectedItem]} {totals[selectedItem]}</li>
             ))}
             <p > Итого: <span className="final" id="total" > {total}</span> рублей</p>
-            <button onClick={handlePrint}>Печать чека</button>
+            <button onClick={generateAndDownloadReceipt}>Скачать чек</button>
         </ul>
     </Modal>
 </div>
