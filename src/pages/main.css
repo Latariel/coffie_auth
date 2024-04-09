@@ -1,0 +1,27 @@
+*{
+    font-family: Lato,Helvetica,Arial,sans-serif,-apple-system;
+    margin: 0;
+    padding: 0;
+}
+
+/*.top{*/
+/*    !*display: inline-flex;*!*/
+/*    justify-content: space-between;*/
+/*}*/
+
+.btn3{
+    float: right;
+    background: rgb(144, 201, 110);
+    border-radius: 10px;
+    border: hidden;
+    color: #101010;
+    height: 36px;
+    width: 100px;
+    margin-top: 25px;
+    margin-right: 10px;
+}
+
+.btn3:focus {
+    /*border-color: rgba(250, 132, 70, 1);*/
+    border-color: #495739;
+}

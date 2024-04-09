@@ -1,0 +1,155 @@
+*{
+    /*background-color: #edeeef;*/
+    font-family: Lato,Helvetica,Arial,sans-serif,-apple-system;
+    margin: 0;
+    padding: 0;
+}
+
+.img1{
+    width: 150px;
+    height: 75px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+fieldset{
+    border: 0;
+}
+ul{
+    list-style-type:  none;
+}
+.img{
+    width: 90px;
+    height: 90px;
+    margin-top: 36px;
+    margin-left: 182px;
+}
+
+.txt1 {
+
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 26px;
+
+}
+
+.txt2{
+    color: #495739;
+    text-align: center;
+    font-size: 16px;
+    padding-top:50px;
+}
+.reg {
+    background-color: white;
+    position: center;
+    color: #495739;
+    padding-top: 30px;
+    border-radius: 8px;
+}
+.regForm {
+    width: 384px;
+    height: 498px;
+    /*height: 398px;*/
+    background: #ffffff;
+    border: 1px solid rgba(241, 239, 239, 0.8);
+    border-radius: 8px;
+    margin: 70px auto;
+    /*box-shadow: 2px 7px 39px 1px*/
+    /*box-shadow: #1b032f;*/
+    box-shadow: 2px -1px 32px 8px rgb(238, 239, 243);
+    /*margin-top: 250px;*/
+    /*margin-left: 573px;*/
+}
+
+.email {
+    position: relative;
+}
+
+
+
+input:focus {
+    /*border-color: rgba(250, 132, 70, 1);*/
+    border-color: #495739;
+}
+
+
+.SignUp {
+    background-color: white;
+    text-decoration: none;
+    color: #282c34;
+
+}
+
+.btn1 {
+    background: rgb(144, 201, 110);
+    border-radius: 10px;
+    border: hidden;
+    color: #101010;
+    height: 46px;
+    width: 288px;
+    margin-top: 35px;
+    margin-left: 50px;
+}
+
+
+.btn2{
+    background: rgba(242, 242, 247, 1);
+    border-radius: 10px;
+    border: hidden;
+    color: #101010;
+    height: 46px;
+    width: 288px;
+    margin-top: 16px;
+    margin-left: 50px;
+
+}
+
+
+
+input.btn :placeholder-shown+input:placeholder-shown+button,
+input  :placeholder-shown+button {
+    background-color: rgb(12, 9, 6);
+}
+
+input.btn :not(:placeholder-shown)+input .btn1:not(:placeholder-shown)+button {
+    background-color: rgb(47, 31, 23);
+}
+
+
+
+
+
+
+/* Ваш файл стилей (например, styles.css) */
+
+input {
+
+    font-size: 14px;
+    height: 46px;
+    width: 288px;
+    border: 2px solid rgba(241, 239, 239, 0.8);
+    border-radius: 10px;
+    outline: none;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.placeholder {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    font-size: 14px;
+    color: lightslategray;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.filled {
+    top: 35px; /* Перемещаем label наверх */
+    font-size: 10px; /* Уменьшаем размер шрифта */
+}
+
+button a{
+    text-decoration: none;
+}
