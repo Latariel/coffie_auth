@@ -4,11 +4,16 @@
     padding: 0;
 }
 
-/*.top{*/
-/*    !*display: inline-flex;*!*/
-/*    justify-content: space-between;*/
-/*}*/
+.top{
+    /*display: inline-flex;*/
+    justify-content: space-between;
+    border-bottom: solid rgba(40, 44, 52, 0.18) 1px;
 
+}
+.top2{
+    padding-bottom: 400px;
+    border-bottom: solid #4c6547 1px;
+}
 .btn3{
     float: right;
     background: rgb(144, 201, 110);
@@ -24,4 +29,219 @@
 .btn3:focus {
     /*border-color: rgba(250, 132, 70, 1);*/
     border-color: #495739;
+}
+
+
+
+////таблицы///
+
+
+.modal {
+    width: 933px;
+    height: 587px;
+    background-color: white;
+    margin: 64px auto;
+    border-radius: 25px;
+}
+.left-part{
+    width: 412px;
+    height: auto;
+    background-color: white;
+    /*border-radius: 25px;*/
+    display: grid;
+    position: absolute;
+    /*padding-bottom: 70px;*/
+    /*border-bottom: solid #282c34 3px;*/
+}
+.img {
+    width: 348px;
+    height: 298px;
+    border: 25px;
+    margin-top: 32px;
+    margin-left: 32px;
+}
+caption{
+    color: rgba(0, 0, 0, 0.76);
+    font-weight: bold;
+    font-size: x-large;
+    background-color: white;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.drinks {
+    width: 489px;
+    height: 220px;
+    margin-left: 32px;
+    margin-top: 12px;
+}
+
+.deserts{
+    margin-right: 30px;
+    margin-top: 12px;
+    height: 220px;
+    width: 489px;
+    background-color: white;
+    float: right;
+}
+
+
+p{
+    background-color: white;
+}
+
+.drinks td,th {
+    background-color: #ffffff;
+    padding: 0;
+    border-collapse: collapse;
+    white-space:pre-wrap;
+}
+
+
+tr{
+    height: 30px;
+}
+table{
+    color: rgb(88, 131, 63);
+    border-collapse: collapse;
+    padding: 4px;
+}
+
+
+
+.right-part {
+    background-color: white;
+    border-radius: 25px;
+}
+
+.bat{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.gr{
+    justify-content: left;
+    margin-top: 7px;
+}
+
+.line {
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+    color: black;
+    width: 899px;
+}
+
+.order {
+    margin-top: 32px;
+    margin-left: 412px;
+    height: 25px;
+    width: 489px;
+
+}
+
+.souse {
+    color: black;
+    font-weight: bold;
+    background-color: white;
+
+}
+
+.one{
+    text-align: right;
+    background-color: white;
+}
+/*.deserts{*/
+/*    margin-right: 30px;*/
+/*    margin-top: 12px;*/
+/*    height: 220px;*/
+/*    width: 489px;*/
+/*    background-color: white;*/
+/*    float: right;*/
+/*}*/
+
+.total_1 {
+    /*margin-left: 412px;*/
+    /*margin-top: 75px;*/
+    float: right;
+}
+
+
+.drinks button {
+    outline: none;
+    border: 0;
+    background: transparent;
+    font-size: initial;
+}
+
+.deserts button {
+    outline: none;
+    border: 0;
+    background: transparent;
+    font-size: initial;
+}
+
+/*.drinks span{*/
+/*    background-color: rgba(252, 252, 252, 0.82)*/
+/*}*/
+
+
+.final {
+    font-weight: bold;
+    font-size: xx-large;
+    margin-top: 80px;
+    background-color: white;
+}
+
+
+
+/*.ket {*/
+/*    height: 20px;*/
+/*}*/
+
+/*.ch {*/
+/*    border-top: 4px white;*/
+/*    height: 20px ;*/
+/*}*/
+/*.bl{*/
+/*    height: 20px ;*/
+/*}*/
+
+/*.bbq{*/
+/*    height: 20px ;*/
+/*}*/
+.souse_two tr{
+    border-bottom: 7px solid rgb(255, 255, 255);
+}
+
+.souse_two td{
+    background-color: rgba(252, 252, 252, 0.82);
+    padding-left: 5px;
+}
+
+.border {
+    border-radius: 10px;
+}
+
+.btnMain{
+    margin-top: 70px;
+    margin-left: 360px;
+}
+
+.btn4{
+    font-size: medium;
+    background: rgb(144, 201, 110);
+    border-radius: 10px;
+    border: hidden;
+    color: #101010;
+    height: 46px;
+    width: 300px;
+    margin-right: 100px;
+}
+
+.btn5{
+    font-size: medium;
+    background: rgb(144, 201, 110);
+    border-radius: 10px;
+    border: hidden;
+    color: #101010;
+    height: 46px;
+    width: 300px;
 }
